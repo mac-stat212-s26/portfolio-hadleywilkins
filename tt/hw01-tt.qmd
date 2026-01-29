@@ -18,6 +18,7 @@ qualifications <- readr::read_csv('https://raw.githubusercontent.com/rfordatasci
 size <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/size.csv')
 
 ```
+How does the capital stock of companies vary by company size?
 
 ```{r}
 size_totals <- companies |>
