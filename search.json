@@ -43,6 +43,17 @@
     ]
   },
   {
+    "objectID": "tt/hw01-tt.html",
+    "href": "tt/hw01-tt.html",
+    "title": "Homework 01",
+    "section": "",
+    "text": "TidyTuesday Section\nExplore the week’s TidyTuesday challenge. Develop a research question, then answer it through a short data story with effective visualization(s). Provide sufficient background for readers to grasp your narrative.\nThe dataset displays all 9 Brazilian companies in the Fortune Global 500, which ranks the world’s largest companies by annual revenue. The figures below are given in millions of US dollars and are for the fiscal year 2022.[1] Also listed are the headquarters location, net profit, number of employees worldwide and industry sector of each company.\nCodelibrary(tidyverse)\nlibrary(ggplot2)\ncompanies &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/companies.csv')\nlegal_nature &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/legal_nature.csv')\nqualifications &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/qualifications.csv')\nsize &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-01-27/size.csv')\nCodesize_totals &lt;- companies |&gt;\n  group_by(company_size) |&gt;\n  summarise(total_capital_stock = sum(capital_stock, na.rm = TRUE))\n\nggplot(size_totals, \n       aes(x = company_size, \n           y = total_capital_stock, \n           fill = company_size)) +\n  geom_col() +\n  labs(\n    title = \"Total Capital Stock by Company Size\",\n    x = \"Company Size\",\n    y = \"Total Capital Stock (USD, millions)\"\n  )",
+    "crumbs": [
+      "TidyTuesday",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Homework 01</span>"
+    ]
+  },
+  {
     "objectID": "pcl/pcl.html",
     "href": "pcl/pcl.html",
     "title": "Pre-Class Learning Summaries",
@@ -50,7 +61,7 @@
     "text": "R",
     "crumbs": [
       "Pre-Class Learnings",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Pre-Class Learning Summaries</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Pre-Class Learning Summaries</span>"
     ]
   },
   {
@@ -61,7 +72,7 @@
     "text": "Quarto\n\n\n\nfrom qmd4sci.njtierney.com",
     "crumbs": [
       "Pre-Class Learnings",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Pre-Class Learning Summaries</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Pre-Class Learning Summaries</span>"
     ]
   },
   {
@@ -72,7 +83,7 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ICA Sample 1</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ICA Sample 1</span>"
     ]
   },
   {
@@ -83,7 +94,29 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>ICA Sample 2</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>ICA Sample 2</span>"
+    ]
+  },
+  {
+    "objectID": "ica/cleaning.html",
+    "href": "ica/cleaning.html",
+    "title": "Cleaning SFO Weather Data",
+    "section": "",
+    "text": "Exercise\nCarryout the following steps to clean and save the San Francisco Weather data. Make sure to download and add the data file to your portfolio repository as instructed.\nCodelibrary(tidyverse)\nweather &lt;- read_csv(\"data/raw/weather.csv\")\nCodeweather_clean &lt;- weather %&gt;% mutate(PrecipYr = na_if(PrecipYr, 99999))\nCodehead(weather_clean)\n\n# A tibble: 6 × 18\n  Month   Day   Low  High NormalLow NormalHigh RecordLow LowYr RecordHigh HiYear\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;\n1    11    20    48    55        48         62        35  1964         69   2005\n2     6    16    52    68        53         70        46  1952         90   1961\n3     5     9    47    63        50         66        41  1950         88   1993\n4    10    26    47    69        52         69        39  1954         89   2003\n5     9    27    55    82        55         73        47  1955         96   2010\n6     7     6    52    70        54         71        47  1953         86   1957\n# ℹ 8 more variables: Precip &lt;dbl&gt;, RecordPrecip &lt;dbl&gt;, PrecipYr &lt;dbl&gt;,\n#   date &lt;chr&gt;, Record &lt;lgl&gt;, RecordText &lt;chr&gt;, RecordP &lt;lgl&gt;, CulmPrec &lt;dbl&gt;\nCodeweather_clean &lt;- weather_clean %&gt;% \n  arrange(Month, Day) %&gt;% \n  mutate(dateInYear = 1:365)\nCodeweather_clean &lt;- weather_clean |&gt; \n  mutate(month_name = month.abb[Month])\nCodewrite_csv(weather_clean, file = \"data/processed/weather_clean.csv\")",
+    "crumbs": [
+      "In-Class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cleaning SFO Weather Data</span>"
+    ]
+  },
+  {
+    "objectID": "ica/cleaning.html#exercise",
+    "href": "ica/cleaning.html#exercise",
+    "title": "Cleaning SFO Weather Data",
+    "section": "",
+    "text": "Read in the weather data in this file with the correct relative file path after you move it to the instructed location.\n\n\n\nThere is a variable that has values that don’t make sense in the data context. Figure out which variable this is and clean it up by making those values missing using na_if().\n\n\n\nCreate a variable called dateInYear that indicates the day of the year (1-365) for each case. (Jan 1 should be 1, and Dec 31 should be 365).\n\n\n\n\nCreate a variable called month_name that shows the 3-letter abbreviation for each case.\n\n\n\nSave the wrangled data to the data/processed/ folder using write_csv(). Name this file weather_clean.csv. Look up the documentation for this function by typing ?write_csv in the Console. You’ll need to write an appropriate relative path.",
+    "crumbs": [
+      "In-Class Activities",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Cleaning SFO Weather Data</span>"
     ]
   },
   {
@@ -94,7 +127,7 @@
     "text": "Add content here",
     "crumbs": [
       "Extras",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Extra Sample 1</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Extra Sample 1</span>"
     ]
   },
   {
@@ -105,7 +138,7 @@
     "text": "Add content here",
     "crumbs": [
       "Extras",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Extra Sample 2</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Extra Sample 2</span>"
     ]
   }
 ]
