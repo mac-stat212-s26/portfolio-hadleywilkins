@@ -9,6 +9,8 @@ Explore the week's [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
 
 The dataset displays all 9 Brazilian companies in the Fortune Global 500, which ranks the world's largest companies by annual revenue. The figures below are given in millions of US dollars and are for the fiscal year 2022.[1] Also listed are the headquarters location, net profit, number of employees worldwide and industry sector of each company.
 
+The original data can be found [Here](https://github.com/rfordatascience/tidytuesday/blob/main/data/2026/2026-01-27/readme.md).
+
 ```{r}
 library(tidyverse)
 library(ggplot2)
