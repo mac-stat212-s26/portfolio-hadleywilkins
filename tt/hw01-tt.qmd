@@ -34,6 +34,7 @@ ggplot(size_totals,
     title = "Total Capital Stock by Company Size",
     x = "Company Size",
     y = "Total Capital Stock (USD, millions)"
-  )
+  ) +
+  theme(legend.position = "none")
 ```
 
