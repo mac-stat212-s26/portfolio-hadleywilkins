@@ -170,7 +170,21 @@ If you'd like finer control of the width of these lines/rectangles, check out th
 Recreate the visual demarcations of the months by adding vertical lines separating the months.  Brainstorm how we might draw those vertical lines. What `geom` might we use?  What subset of the data might we use in that `geom` layer to draw lines only at the month divisions? 
 
 ```{r }
+months <- weather %>%
+  group_by(Month) %>%
+  summarize(month_start = min(dateInYear), month_mid = (min(dateInYear) + max(dateInYear)) / 2,)
 
+
+ggplot(weather) +
+    geom_linerange(aes(x = dateInYear, ymin = RecordLow, ymax = RecordHigh),
+                   color = "#ECEBE3") +
+    geom_vline(data = months, aes(xintercept = month_start)
+    ) +
+    geom_linerange(aes(x = dateInYear, ymin = NormalLow, ymax = NormalHigh),
+                   color = "#C8B8BA") +
+    geom_linerange(aes(x = dateInYear, ymin = Low, ymax = High),
+                   color = "#A90248") +
+    theme_classic()
 
 ```
 
@@ -183,6 +197,25 @@ Change the x-axis labels so that the month names display in the center of each m
 ::: {.callout-tip title="Month Names"}
 R has built-in variables called `month.abb` and `month.name` that contain abbreviated and full month names.
 :::
+
+```{r}
+
+ggplot(weather) +
+    geom_linerange(aes(x = dateInYear, ymin = RecordLow, ymax = RecordHigh),
+                   color = "#ECEBE3") +
+    geom_vline(data = months, aes(xintercept = month_start)
+    ) +
+    geom_linerange(aes(x = dateInYear, ymin = NormalLow, ymax = NormalHigh),
+                   color = "#C8B8BA") +
+    geom_linerange(aes(x = dateInYear, ymin = Low, ymax = High),
+                   color = "#A90248") +
+    theme_classic() +
+    scale_x_continuous(
+      breaks = months$month_mid,
+      labels = month.abb[months$Month]
+)
+
+```
 
 
 Try to figuring out this new challenge using search engines and LLMs:
@@ -204,6 +237,24 @@ Create a precipitation plot that looks like the following.  Note that
 
 
 ```{r weather_plot_precip}
+month_data <- weather |> 
+  group_by(Month) |> 
+  summarise(end_date = max(dateInYear), culm_prec = CulmPrec[which.max(dateInYear)],
+    .groups = "drop")
+
+record_data <- weather |> filter(RecordP == TRUE) |> select(dateInYear, CulmPrec)
+
+ggplot(weather) +
+  geom_area(
+    aes(x = dateInYear, y = CulmPrec),
+    fill = "#ebeae2",
+    color = "#32a3d8",
+    linewidth = 0.3
+  ) +
+  geom_point(data = record_data, aes(y = CulmPrec, x = dateInYear), shape = 25, size = 1, fill = "black") +
+  
+  geom_text(data = month_data, aes(x = end_date, y = culm_prec, label = culm_prec), size = 2) +
+  theme_classic()
 
 ```
 ## Done!
