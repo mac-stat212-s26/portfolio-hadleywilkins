@@ -172,7 +172,7 @@ Recreate the visual demarcations of the months by adding vertical lines separati
 ```{r }
 months <- weather %>%
   group_by(Month) %>%
-  summarize(month_start = min(dateInYear), month_mid = (min(dateInYear) + max(dateInYear)) / 2,)
+  summarize(month_start = min(dateInYear), month_mid = (min(dateInYear) + max(dateInYear)) / 2)
 
 
 ggplot(weather) +
