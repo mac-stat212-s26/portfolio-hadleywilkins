@@ -419,21 +419,6 @@ cookieconsent.run({
   <a href="../ica/04_adv_maps/code/04-adv-maps-1-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4 Adv Spatial Viz P1</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ica/06-wrangling-1-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6 Adv Data wrangling I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ica/07-wrangling-2-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7 Adv Data wrangling II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../ica/08-missing-data-notes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">8 Missing Data</span></a>
-  </div>
-</li>
       </ul>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -707,7 +692,7 @@ cookieconsent.run({
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>months <span class="ot">&lt;-</span> weather <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">group_by</span>(Month) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">summarize</span>(<span class="at">month_start =</span> <span class="fu">min</span>(dateInYear), <span class="at">month_mid =</span> (<span class="fu">min</span>(dateInYear) <span class="sc">+</span> <span class="fu">max</span>(dateInYear)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">summarize</span>(<span class="at">month_start =</span> <span class="fu">min</span>(dateInYear), <span class="at">month_mid =</span> (<span class="fu">min</span>(dateInYear) <span class="sc">+</span> <span class="fu">max</span>(dateInYear)) <span class="sc">/</span> <span class="dv">2</span>,)</span>
 <span id="cb5-4"><a href="#cb5-4"></a></span>
 <span id="cb5-5"><a href="#cb5-5"></a></span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="fu">ggplot</span>(weather) <span class="sc">+</span></span>
@@ -1469,7 +1454,7 @@ cookieconsent.run({
 <span id="cb8-172"><a href="#cb8-172"></a><span class="in">```{r }</span></span>
 <span id="cb8-173"><a href="#cb8-173"></a>months <span class="ot">&lt;-</span> weather <span class="sc">%&gt;%</span></span>
 <span id="cb8-174"><a href="#cb8-174"></a>  <span class="fu">group_by</span>(Month) <span class="sc">%&gt;%</span></span>
-<span id="cb8-175"><a href="#cb8-175"></a>  <span class="fu">summarize</span>(<span class="at">month_start =</span> <span class="fu">min</span>(dateInYear), <span class="at">month_mid =</span> (<span class="fu">min</span>(dateInYear) <span class="sc">+</span> <span class="fu">max</span>(dateInYear)) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb8-175"><a href="#cb8-175"></a>  <span class="fu">summarize</span>(<span class="at">month_start =</span> <span class="fu">min</span>(dateInYear), <span class="at">month_mid =</span> (<span class="fu">min</span>(dateInYear) <span class="sc">+</span> <span class="fu">max</span>(dateInYear)) <span class="sc">/</span> <span class="dv">2</span>,)</span>
 <span id="cb8-176"><a href="#cb8-176"></a></span>
 <span id="cb8-177"><a href="#cb8-177"></a></span>
 <span id="cb8-178"><a href="#cb8-178"></a><span class="fu">ggplot</span>(weather) <span class="sc">+</span></span>
