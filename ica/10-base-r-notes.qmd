@@ -201,7 +201,8 @@ x[x > 5 & !is.na(x)]
 
 Unlike `filter()`, `NA` indices will be included in the output as `NA`s unless you explicitly remove them (`filter()` removes instances of missing values by default.
 
-```{r}    
+```{r}
+library(tidyverse)
 # Compare with filter 
 filter(tibble(x = x), x > 5)
 ```
@@ -322,8 +323,43 @@ mtcars |> pull(mpg)
 1. **Subsetting Functions** For each of the tasks below, write a function that take a vector as input returns the desired output:
 
 a. The elements at even-numbered positions. (Hint: use the `seq()` function.)
+
+```{r}
+get_even_pos <- function(x) {
+    if (length(x) <= 1) {
+        print("No even positions")
+    } else {
+        idx <- seq(2, length(x), by = 2)
+        x[idx]
+    }
+}
+get_even_pos(1:10)
+get_even_pos(1:9)
+get_even_pos(1)
+```
+
+
 b. Every element except the last value.
+
+```{r}
+get_all_but_last <- function(x) {
+    head(x, -1)
+    # x[1:(length(x)-1)]
+}
+get_all_but_last(1:10)
+```
+
 c. Only even values (and no missing values).
+
+```{r}
+get_evens <- function(x) {
+    x[x %% 2 == 0 & !is.na(x)]
+}
+
+get_evens(c(1, 2, 7, NA))
+get_evens(c(1, 2, 7, 8, NA))
+```
+
 
 ## Exploring the structure of an object with `str()`  
 
