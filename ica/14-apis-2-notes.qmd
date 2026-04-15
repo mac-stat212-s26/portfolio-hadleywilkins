@@ -129,7 +129,7 @@ Read in the key with the following code:
 census_api_key <- readLines("census_api_key.txt")
 
 # if you will be below the query limit, you can pass an empty key as follows
-census_api_key <- ""
+#census_api_key <- ""
 ```
 
 ### Navigating API documentation
@@ -229,12 +229,12 @@ Let's start at the top of the API documentation page to see how to navigate this
 The following request searches for board games, board game accessories, and board game expansions with the words "mystery" and "curse" in the title:
 
 ```{r httr2_bgg}
-req <- request("https://boardgamegeek.com/xmlapi2") |> 
-    req_url_path_append("search") |> 
-    req_url_query(query = I("mystery+curse"), type = I("boardgame,boardgameaccessory,boardgameexpansion")) |> 
-  req_headers(
-    "Authorization" = sprintf("Bearer %s", bgg_key)
-  )
+#req <- request("https://boardgamegeek.com/xmlapi2") |> 
+    #req_url_path_append("search") |> 
+    #req_url_query(query = I("mystery+curse"), type = I("boardgame,boardgameaccessory,boardgameexpansion")) |> 
+  #req_headers(
+    #"Authorization" = sprintf("Bearer %s", bgg_key)
+  #)
 ```
 
 When we use `req_perform()`, we see from `Content-Type` that the format of the response is something called XML. We can navigate to the request URL to see the structure of this output.
@@ -245,8 +245,7 @@ When we use `req_perform()`, we see from `Content-Type` that the format of the r
 ```{r bgg_response}
 resp <- req_perform(req)
 resp
-resp <- resp_body_xml(resp)
-resp
+
 ```
 
 The XML output is not packaged in a nice way. (We'd love to have a data frame.) We can use the `xml2` package to explore and navigate the XML structure to extract the information we need.
@@ -254,7 +253,7 @@ The XML output is not packaged in a nice way. (We'd love to have a data frame.) 
 Let's first use the `xml_structure()` function to see how information is organized:
 
 ```{r xml_structure}
-xml_structure(resp)
+#xml_structure(resp)
 ```
 
 The key navigation and extraction functions in `xml2` are:

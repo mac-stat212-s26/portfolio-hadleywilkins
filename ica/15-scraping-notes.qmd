@@ -187,9 +187,9 @@ Write a few observations about your comfort/confidence in this planning exercise
 base_url <- "https://www.nih.gov/news-events/news-releases"
 urls_all_pages <- c(base_url, str_c(base_url, "?page=", 1:4))
 
-pages2 <- purrr::map(urls_all_pages, scrape_page)
-df_articles2 <- bind_rows(pages2)
-head(df_articles2)
+#pages2 <- purrr::map(urls_all_pages, scrape_page)
+#df_articles2 <- bind_rows(pages2)
+#head(df_articles2)
 ```
 
 
